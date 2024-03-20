@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="WindowColor">#1c1b1f</color>
+    <color name="TranparenAccent">#2b2b2b</color>
+    <color name="MainAccent">#5b5b80</color>
+    <color name="ActiveAccent">#5b5b80</color>
+    <color name="Text">#C3C3C3</color>
+    <color name="InActiveText">#505050</color>
+
+    <color name="SkyBlue">#428FBD</color>
+    <color name="TimeIn">#3A9F87</color>
+    <color name="TimeOut">#9F3A3A</color>
+
+</resources>

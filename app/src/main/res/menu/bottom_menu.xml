@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_dashboard"
+        android:title="Home"
+        android:icon="@drawable/ic_dashboard"/>
+    <item
+        android:id="@+id/bottom_attendance"
+        android:title="Attendance"
+        android:icon="@drawable/ic_attendance"/>
+    <item
+        android:id="@+id/bottom_salary"
+        android:title="Salary"
+        android:icon="@drawable/ic_salary"/>
+</menu>
