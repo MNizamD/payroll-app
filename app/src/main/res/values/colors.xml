@@ -19,4 +19,9 @@
     <color name="SkyBlue">#56B7F1</color>
     <color name="TimeIn">#61CFB5</color>
     <color name="TimeOut">#F17575</color>
+
+    <color name="Absent">#FE6DA8</color>
+    <color name="Undertime">#56B7F1</color>
+    <color name="Late">#FED70E</color>
+    <color name="Ontime">#37d88e</color>
 </resources>

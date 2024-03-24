@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import com.nizam.payroll.R;
 
 import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.charts.StackedBarChart;
 import org.eazegraph.lib.charts.ValueLineChart;
+import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
+import org.eazegraph.lib.models.StackedBarModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
@@ -72,27 +75,64 @@ public class HomeFragment extends Fragment {
 
         PieChart mPieChart = (PieChart) view.findViewById(R.id.pieChart);
 
-        mPieChart.addPieSlice(new PieModel("Freetime", 15, Color.parseColor("#FE6DA8")));
-        mPieChart.addPieSlice(new PieModel("Sleep", 25, Color.parseColor("#56B7F1")));
-        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+        mPieChart.addPieSlice(new PieModel("Freetime", 15, getResources().getColor(R.color.Undertime)));
+        mPieChart.addPieSlice(new PieModel("Sleep", 25, getResources().getColor(R.color.Ontime)));
+        mPieChart.addPieSlice(new PieModel("Eating", 9, getResources().getColor(R.color.Late)));
+        mPieChart.addPieSlice(new PieModel("Eating", 2, getResources().getColor(R.color.Absent)));
         mPieChart.setAnimationTime(500);
         mPieChart.setInnerPaddingColor(getResources().getColor(R.color.TranparenAccent));
 
         mPieChart.startAnimation();
 
-        ValueLineChart mCubicValueLineChart = (ValueLineChart) view.findViewById(R.id.cubiclinechart);
-        ValueLineSeries series = new ValueLineSeries();
-        series.setColor(Color.parseColor("#545696"));
+//        ValueLineChart mCubicValueLineChart = (ValueLineChart) view.findViewById(R.id.cubiclinechart);
+//        ValueLineSeries series = new ValueLineSeries();
+//        series.setColor(Color.parseColor("#545696"));
+//
+//        series.addPoint(new ValueLinePoint("Jan 15", 2.4f));
+//        series.addPoint(new ValueLinePoint("Jan 31", 2.4f));
+//        series.addPoint(new ValueLinePoint("Feb 15", 3.4f));
+//        series.addPoint(new ValueLinePoint("Feb 29", 3.4f));
+//        series.addPoint(new ValueLinePoint("Mar 15", 5.4f));
+//        series.addPoint(new ValueLinePoint("Mar 31", 5.4f));
+//        mCubicValueLineChart.addSeries(series);
+//        mCubicValueLineChart.startAnimation();
+//        mCubicValueLineChart.setUseDynamicScaling(true);
 
-        series.addPoint(new ValueLinePoint("Jan 15", 2.4f));
-        series.addPoint(new ValueLinePoint("Jan 31", 2.4f));
-        series.addPoint(new ValueLinePoint("Feb 15", 3.4f));
-        series.addPoint(new ValueLinePoint("Feb 29", 3.4f));
-        series.addPoint(new ValueLinePoint("Mar 15", 5.4f));
-        series.addPoint(new ValueLinePoint("Mar 31", 5.4f));
-        mCubicValueLineChart.addSeries(series);
-        mCubicValueLineChart.startAnimation();
-        mCubicValueLineChart.setUseDynamicScaling(true);
+        StackedBarChart mStackedBarChart = (StackedBarChart) view.findViewById(R.id.stackedbarchart);
+
+        StackedBarModel s1 = new StackedBarModel("J");
+        s1.addBar(new BarModel(2.3f, 0xFF63CBB0));
+        s1.addBar(new BarModel(5.3f, 0xFF56B7F1));
+
+        StackedBarModel s2 = new StackedBarModel("F");
+        s2.addBar(new BarModel(9.3f, 0xFF63CBB0));
+        s2.addBar(new BarModel(4.3f, 0xFF56B7F1));
+
+        StackedBarModel s3 = new StackedBarModel("M");
+        s3.addBar(new BarModel(3.3f, 0xFF63CBB0));
+        s3.addBar(new BarModel(8.3f, 0xFF56B7F1));
+
+        StackedBarModel s4 = new StackedBarModel("A");
+        s4.addBar(new BarModel(1.3f, 0xFF63CBB0));
+        s4.addBar(new BarModel(7.3f, 0xFF56B7F1));
+
+        StackedBarModel s5 = new StackedBarModel("M");
+        s5.addBar(new BarModel(2.3f, 0xFF63CBB0));
+        s5.addBar(new BarModel(4.3f, 0xFF56B7F1));
+
+        StackedBarModel s6 = new StackedBarModel("J");
+        s6.addBar(new BarModel(6.3f, 0xFF63CBB0));
+        s6.addBar(new BarModel(8.3f, 0xFF56B7F1));
+
+        mStackedBarChart.addBar(s1);
+        mStackedBarChart.addBar(s2);
+        mStackedBarChart.addBar(s3);
+        mStackedBarChart.addBar(s4);
+        mStackedBarChart.addBar(s5);
+        mStackedBarChart.addBar(s6);
+
+        mStackedBarChart.setAnimationTime(500);
+        mStackedBarChart.startAnimation();
 
         return view;
     }

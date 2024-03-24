@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void initComp(){
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this,fragmentArrayList);
         tabViewPager = findViewById(R.id.tabViewPager);
         tabViewPager.setAdapter(viewPagerAdapter);
+        tabViewPager.setOffscreenPageLimit(2); // Optimization
 
     }
     private void initListeners(){
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     public static void showToast(String message, Context context){
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(()->{
-            Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+            Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
         });
     }
 

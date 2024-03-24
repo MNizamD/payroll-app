@@ -154,20 +154,17 @@
                 android:padding="12dp"
                 android:background="@drawable/rounded_card">
 
-                <org.eazegraph.lib.charts.ValueLineChart
-                    android:id="@+id/cubiclinechart"
+                <org.eazegraph.lib.charts.StackedBarChart
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/stackedbarchart"
                     android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:layout_margin="5dp"
-                    app:egCurveSmoothness="0.4"
-                    app:egIndicatorLineColor="#FE6DA8"
-                    app:egLegendHeight="23dp"
-                    app:egShowStandardValue="true"
-                    app:egUseCubic="true"
-                    app:egUseOverlapFill="true"
-                    app:egAnimationTime="500"
-                    app:egIndicatorTextColor="@color/Green"
-                    app:egShowLegendBeneathIndicator="true"
+                    android:layout_height="110dp"
+                    app:egFixedBarWidth="true"
+                    app:egBarWidth="20dp"
+                    app:egLegendHeight="25dp"
+                    app:egShowValues="false"
+                    app:egLegendTextSize="10sp"
+                    android:padding="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -252,7 +249,7 @@
                         android:layout_height="50dp"
                         android:layout_marginRight="12dp"
                         android:src="@drawable/ic_fact_check"
-                        app:tint="#D81B60" />
+                        app:tint="#F13177" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -300,7 +297,7 @@
                         android:layout_height="50dp"
                         android:layout_marginRight="12dp"
                         android:src="@drawable/ic_payslip"
-                        app:tint="#3949AB" />
+                        app:tint="#6C7BD5" />
 
                     <TextView
                         android:layout_width="wrap_content"
