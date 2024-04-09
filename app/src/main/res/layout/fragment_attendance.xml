@@ -66,6 +66,7 @@
                 android:text="March 24"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="@color/BlackOrWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +83,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rendered Work"
-                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView9"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView9" />
@@ -137,7 +137,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
                                     android:text="08:00am"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/BlackOrWhite"/>
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -166,7 +168,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
                                     android:text="12:00pm"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/BlackOrWhite" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
@@ -200,7 +204,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
                                     android:text="01:00pm"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/BlackOrWhite" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -229,7 +235,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
                                     android:text="05:00pm"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/BlackOrWhite" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
@@ -249,7 +257,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Attendance Rate"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -276,7 +284,7 @@
                     android:id="@+id/att_bar_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineHeight="20dp"
+                    android:lineHeight="30dp"
                     android:text="Ontime\nLate\nUndertime\nAbsent"
                     android:textStyle="bold" />
 
@@ -284,24 +292,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:lineHeight="20dp"
-                    android:text="04%\n05%\n16%\n70%"
+                    android:lineHeight="30dp"
+                    android:text="4d: \n5d: \n6d: \n7d: "
                     android:textAlignment="textEnd" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:lineHeight="20dp"
-                    android:text="4d\n5d\n6d\n7d"
-                    android:textAlignment="textEnd" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:lineHeight="20dp"
-                    android:text="13hrs\n05hrs\n60hrs\n7hrs"
+                    android:lineHeight="30dp"
+                    android:text="13hrs\n05hrs\n60hrs\n07hrs"
+                    android:textColor="@color/BlackOrWhite"
                     android:textAlignment="textEnd" />
             </LinearLayout>
 
@@ -309,7 +309,7 @@
                 android:id="@+id/att_bar_chart"
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
-                android:layout_margin="16dp"
+                android:layout_marginVertical="24dp"
                 app:hbcv_color="@color/Absent"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -329,7 +329,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Upcoming Holidays"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -339,16 +339,15 @@
                 android:layout_height="wrap_content"
                 android:text="Holiday 1\nHoliday 2\nHoliday 3"
                 android:layout_marginTop="16dp"
-                android:textSize="18sp"
-                android:lineHeight="36dp"
+                android:lineHeight="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:lineHeight="36dp"
+                android:lineHeight="30dp"
                 android:text="March 01\nMarch 15\nMarch 28"
                 app:layout_constraintBottom_toBottomOf="@+id/textView11"
                 app:layout_constraintEnd_toEndOf="parent"

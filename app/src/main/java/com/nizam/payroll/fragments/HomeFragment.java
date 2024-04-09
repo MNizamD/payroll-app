@@ -3,13 +3,25 @@ package com.nizam.payroll.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.nizam.payroll.R;
+import com.nizam.payroll.fragments.nested.DashboardNOWorkFragment;
+import com.nizam.payroll.fragments.nested.DashboardOnWorkFragment;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.charts.StackedBarChart;
@@ -20,109 +32,127 @@ import org.eazegraph.lib.models.StackedBarModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.concurrent.ExecutorService;
+
 public class HomeFragment extends Fragment {
+    View view;
+    CircularProgressBar circularProgressBar;
+    LinearLayout noWorkDashboard, timeTableDashboard, timeStampDashboard;
+    TextView leaveStatDashboard, timeClockDashboard, modeText, modeDate, leaveDaysLeft;
+    ImageView modeIcon, leaveIcon;
+    PieChart mPieChart;
+    StackedBarChart mStackedBarChart;
+    FragmentContainerView fragment_work_status;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        PieChart mPieChart = (PieChart) view.findViewById(R.id.pieChart);
+        if (getView()==null){
+            view = inflater.inflate(R.layout.fragment_home, container, false);
+            new Thread(() ->{
+                initComp();
+                initData();
+                initListeners();
+                initWorkStatus();
+            }).start();
+        } else {
+            view = getView();
+            initWorkStatus();
+        }
+        return view;
+    }
+    int dashModeFlag = 1;
 
+    private void initComp(){
+        fragment_work_status = view.findViewById(R.id.fragment_work_status);
+        fragment_work_status.setVisibility(View.INVISIBLE);
+        mPieChart = view.findViewById(R.id.pieChart);
+        mStackedBarChart = (StackedBarChart) view.findViewById(R.id.stackedbarchart);
+
+    }
+    private void initData(){
+        requireActivity().runOnUiThread(()->{
+            popDonutChar();
+            popBarChar();
+        });
+    }
+    private void initListeners(){
+
+    }
+    private void initWorkStatus(){
+        view.findViewById(R.id.leaveStatCard).setOnClickListener(view -> {
+            dashModeFlag = (dashModeFlag==3)? 1: dashModeFlag + 1;
+            if(dashModeFlag == 1){
+                replaceFragment(new DashboardOnWorkFragment());
+            } else if ((dashModeFlag==2) || (dashModeFlag == 3)) {
+                replaceFragment(DashboardNOWorkFragment.newInstance(dashModeFlag));
+            }
+            if(dashModeFlag == 3){
+                onLeave(true);
+            } else {
+                onLeave(false);
+            }
+        });
+//        new Handler(Looper.getMainLooper()).postDelayed(()->{
+//            replaceFragment(new DashboardOnWorkFragment());
+//        },1000);
+        replaceFragment(new DashboardOnWorkFragment());
+
+    }
+    private void onLeave(Boolean onLeave){
+        leaveIcon = view.findViewById(R.id.leaveIcon);
+        leaveDaysLeft = view.findViewById(R.id.leaveDaysLeft);
+        leaveStatDashboard = view.findViewById(R.id.leaveStatDashboard);
+
+        // 1 = Clock mode
+        // 2 = No work mode
+        if (onLeave){
+            leaveIcon.setVisibility(View.GONE);
+            leaveDaysLeft.setVisibility(View.VISIBLE);
+            leaveStatDashboard.setText("days left");
+        } else {
+            leaveIcon.setVisibility(View.VISIBLE);
+            leaveDaysLeft.setVisibility(View.GONE);
+            leaveStatDashboard.setText("No leaves");
+        }
+    }
+    private void popDonutChar(){
         mPieChart.addPieSlice(new PieModel("Freetime", 15, getResources().getColor(R.color.Undertime)));
         mPieChart.addPieSlice(new PieModel("Sleep", 25, getResources().getColor(R.color.Ontime)));
         mPieChart.addPieSlice(new PieModel("Eating", 9, getResources().getColor(R.color.Late)));
         mPieChart.addPieSlice(new PieModel("Eating", 2, getResources().getColor(R.color.Absent)));
-        mPieChart.setAnimationTime(500);
-        mPieChart.setInnerPaddingColor(getResources().getColor(R.color.TranparenAccent));
-
+        mPieChart.setAnimationTime(750);
         mPieChart.startAnimation();
 
-//        ValueLineChart mCubicValueLineChart = (ValueLineChart) view.findViewById(R.id.cubiclinechart);
-//        ValueLineSeries series = new ValueLineSeries();
-//        series.setColor(Color.parseColor("#545696"));
-//
-//        series.addPoint(new ValueLinePoint("Jan 15", 2.4f));
-//        series.addPoint(new ValueLinePoint("Jan 31", 2.4f));
-//        series.addPoint(new ValueLinePoint("Feb 15", 3.4f));
-//        series.addPoint(new ValueLinePoint("Feb 29", 3.4f));
-//        series.addPoint(new ValueLinePoint("Mar 15", 5.4f));
-//        series.addPoint(new ValueLinePoint("Mar 31", 5.4f));
-//        mCubicValueLineChart.addSeries(series);
-//        mCubicValueLineChart.startAnimation();
-//        mCubicValueLineChart.setUseDynamicScaling(true);
-
-        StackedBarChart mStackedBarChart = (StackedBarChart) view.findViewById(R.id.stackedbarchart);
-
+        popBarChar();
+    }
+    private void popBarChar(){
         StackedBarModel s1 = new StackedBarModel("J");
         s1.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s1.addBar(new BarModel(5.3f, 0xFF56B7F1));
+        s1.addBar(new BarModel(5.3f, getResources().getColor(R.color.TranparenAccent)));
 
         StackedBarModel s2 = new StackedBarModel("F");
         s2.addBar(new BarModel(9.3f, 0xFF63CBB0));
-        s2.addBar(new BarModel(4.3f, 0xFF56B7F1));
+        s2.addBar(new BarModel(4.3f, getResources().getColor(R.color.TranparenAccent)));
 
         StackedBarModel s3 = new StackedBarModel("M");
         s3.addBar(new BarModel(3.3f, 0xFF63CBB0));
-        s3.addBar(new BarModel(8.3f, 0xFF56B7F1));
+        s3.addBar(new BarModel(8.3f, getResources().getColor(R.color.TranparenAccent)));
 
         StackedBarModel s4 = new StackedBarModel("A");
         s4.addBar(new BarModel(1.3f, 0xFF63CBB0));
-        s4.addBar(new BarModel(7.3f, 0xFF56B7F1));
+        s4.addBar(new BarModel(7.3f, getResources().getColor(R.color.TranparenAccent)));
 
         StackedBarModel s5 = new StackedBarModel("M");
         s5.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s5.addBar(new BarModel(4.3f, 0xFF56B7F1));
+        s5.addBar(new BarModel(4.3f, getResources().getColor(R.color.TranparenAccent)));
 
         StackedBarModel s6 = new StackedBarModel("J");
         s6.addBar(new BarModel(6.3f, 0xFF63CBB0));
-        s6.addBar(new BarModel(8.3f, 0xFF56B7F1));
+        s6.addBar(new BarModel(8.3f, getResources().getColor(R.color.TranparenAccent)));
 
         mStackedBarChart.addBar(s1);
         mStackedBarChart.addBar(s2);
@@ -133,13 +163,38 @@ public class HomeFragment extends Fragment {
 
         mStackedBarChart.setAnimationTime(500);
         mStackedBarChart.startAnimation();
+        requireActivity().runOnUiThread(()->mStackedBarChart.startAnimation());
 
-        return view;
     }
+
+
 //    private ArrayList<PieEntry> dataValues(){
 //        ArrayList<PieEntry> dataVals = new ArrayList<PieEntry>();
 //        dataVals.add(new PieEntry(15,"Fifteen"));
 //        dataVals.add(new PieEntry(10,"Ten"));
 //        return dataVals;
 //    }
+private void replaceFragment(Fragment fragment) {
+    // Hide the fragmentContainer
+    if (fragment_work_status != null) {
+        fragment_work_status.setVisibility(View.INVISIBLE);
+    }
+
+    // Replace the fragment with the new one using the child FragmentManager
+    getChildFragmentManager().beginTransaction()
+            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+            .replace(R.id.fragment_work_status, fragment)
+            .commit();
+
+    // Show the replaced fragment after a delay
+    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+        @Override
+        public void run() {
+            if (fragment_work_status != null) {
+                fragment_work_status.setVisibility(View.VISIBLE);
+            }
+        }
+    }, 250);
+}
+
 }

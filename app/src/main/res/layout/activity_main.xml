@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingLeft="16dp"
         android:gravity="center"
-        style="@style/PrimaryDark"
+        android:background="@color/WindowColor"
         >
         <TextView
             android:id="@+id/main_header"
@@ -35,7 +35,7 @@
             android:layout_height="65dp"
             android:src="@drawable/ic_settings"
             android:background="?attr/selectableItemBackground"
-            style="@style/PrimaryDark"/>
+            app:tint="@color/BlackOrWhite"/>
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -52,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        style="@style/PrimaryDark"
+        android:background="@color/TranparenAccent"
         app:menu="@menu/bottom_menu"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"/>
 

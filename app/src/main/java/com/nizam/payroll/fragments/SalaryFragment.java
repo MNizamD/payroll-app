@@ -156,7 +156,7 @@ public class SalaryFragment extends Fragment {
             PayheadModel basicSalary = new PayheadModel("Basic Salary",100.5f);
             PayheadModel sss = new PayheadModel("SSS",200.5f);
             dataArrayList.clear();
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 2; i++) {
                 dataArrayList.add(basicSalary);
                 dataArrayList.add(sss);
             }

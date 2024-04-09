@@ -9,7 +9,6 @@
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         android:text="iTem_Name"/>
     <View
         android:layout_width="0dp"
@@ -21,7 +20,6 @@
         android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         android:text="1,234.56"/>
 
 

@@ -3,10 +3,11 @@
     <style name="Base.Theme.Payroll" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="colorPrimary">@color/dark_gray</item>
-        <item name="colorPrimaryDark">@color/dark_gray</item>
+        <item name="colorPrimary">@color/TranparenAccent</item>
+        <item name="colorPrimaryDark">@color/WindowColor</item>
         <item name="colorSecondary">@color/dark_gray</item>
-        <item name="android:statusBarColor">@color/dark_gray</item>
+        <item name="android:statusBarColor">@color/WindowColor</item>
+        <item name="android:windowBackground">@color/WindowColor</item>
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
@@ -15,7 +16,7 @@
 
     <style name="PrimaryDark">
         <item name="android:background">@color/dark_gray</item>
-        <item name="android:tint">@color/light_accent</item>
+        <item name="android:tint">@color/TranparenAccent</item>
     </style>
 
     <style name="CustomOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">

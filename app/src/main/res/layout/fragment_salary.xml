@@ -27,7 +27,8 @@
                 android:id="@+id/list_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textSize="12sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -42,7 +43,8 @@
                 android:id="@+id/list_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textSize="12sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,13 +59,15 @@
                 android:id="@+id/list_days"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textSize="12sp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="20dp"
         android:layout_marginHorizontal="4dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -72,6 +76,7 @@
         android:layout_marginVertical="4dp">
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/imageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -84,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Net Pay"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textColor="@color/white"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +150,9 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
                     app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
                 <RelativeLayout
+                    android:id="@+id/relativeLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -153,13 +160,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/earning_listview"
-                        tools:listitem="@layout/breakdown_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        tools:listitem="@layout/breakdown_item" />
                 </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,200.00"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/BlackOrWhite"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -189,6 +207,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
                 <RelativeLayout
+                    android:id="@+id/relativeLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -196,13 +215,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/deduct_listview"
-                        tools:listitem="@layout/breakdown_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        tools:listitem="@layout/breakdown_item" />
                 </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,200.00"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/BlackOrWhite"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
@@ -210,11 +240,13 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="16dp"
                 android:text="Download Payslip"
-                android:textColor="@color/Text"
+                android:textColor="@color/BlackOrWhite"
+                android:letterSpacing=".1"
+                android:layout_marginBottom="4dp"
                 style="@style/Widget.Material3.Button.Icon"
                 app:icon="@drawable/ic_download"
-                app:iconTint="@color/Text"
-                app:cornerRadius="20dp"
+                app:iconTint="@color/BlackOrWhite"
+                app:cornerRadius="30dp"
                 android:backgroundTint="@color/MainAccent"/>
         </LinearLayout>
 

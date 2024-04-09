@@ -12,5 +12,9 @@
     <item
         android:id="@+id/bottom_salary"
         android:title="Salary"
-        android:icon="@drawable/ic_salary"/>
+        android:icon="@drawable/ic_savings"/>
+    <item
+        android:id="@+id/bottom_leave"
+        android:title="Leave"
+        android:icon="@drawable/ic_calendar"/>
 </menu>

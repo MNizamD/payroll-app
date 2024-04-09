@@ -21,8 +21,8 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.kishannareshpal.horizontalbarchartview.HorizontalBarChartView;
 import com.nizam.payroll.MainActivity;
 import com.nizam.payroll.R;
-import com.nizam.payroll.adapters.HolidayAdapter;
-import com.nizam.payroll.models.HolidayModel;
+//import com.nizam.payroll.adapters.HolidayAdapter;
+//import com.nizam.payroll.models.HolidayModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -188,6 +188,8 @@ public class AttendanceFragment extends Fragment {
             newHeight = 400;
         } else if (dayOfWeek == Calendar.SATURDAY && dayOfMonth >= 30){
             newHeight = 400;
+        } else if (dayOfWeek == Calendar.SUNDAY && dayOfMonth == 28){
+            newHeight = 300;
         } else {
             newHeight = 350;
         }
