@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RadioGroup
+        android:id="@+id/themeSelectRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp">
+
+        <RadioButton
+            android:id="@+id/lightMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Light"
+            android:textColor="@color/BlackOrWhite"
+            android:theme="@style/myTheme"/>
+        <RadioButton
+            android:id="@+id/darkMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dark"
+            android:textColor="@color/BlackOrWhite"
+            android:theme="@style/myTheme"/>
+        <RadioButton
+            android:id="@+id/systemMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="System"
+            android:textColor="@color/BlackOrWhite"
+            android:theme="@style/myTheme"/>
+    </RadioGroup>
+
+</LinearLayout>

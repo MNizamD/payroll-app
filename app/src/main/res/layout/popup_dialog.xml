@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:background="@drawable/rounded_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Title"
+            android:textSize="28dp"/>
+
+        <LinearLayout
+            android:id="@+id/popupBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/message"
+                android:padding="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Are you sure you want to logout?"
+                android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/cancelSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/TranparenAccent"
+                android:paddingHorizontal="32dp"
+                android:text="Cancel"
+                android:paddingVertical="16dp"
+                android:textColor="@color/BlackOrWhite" />
+            <Button
+                android:id="@+id/confirmSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/MainAccent"
+                android:paddingHorizontal="32dp"
+                android:text="Select"
+                android:paddingVertical="16dp"
+                android:textColor="@color/BlackOrWhite" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
